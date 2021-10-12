@@ -2,7 +2,6 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
-#include <chrono>
 #include <cstdlib>
 #include "windows.h"
 #include "Project.h"
@@ -42,7 +41,7 @@ void Sort::readNameFile()
 	inputFile.close();
 }
 
-//Part of Quicksort Algorithm
+//Part of Quicksort Algorithm And Binary Search
 int Sort::partition(SortNames* playerArray, int startIndex, int endIndex)
 {
 	int midpoint = startIndex + (endIndex - startIndex) / 2;
@@ -70,9 +69,9 @@ int Sort::partition(SortNames* playerArray, int startIndex, int endIndex)
 	}
 	else
 	{
-		string temp = playerArray[low].names;
-		playerArray[low].names = playerArray[high].names;
-		playerArray[high].names = temp;
+		SortNames temp = playerArray[low];
+		playerArray[low] = playerArray[high];
+		playerArray[high] = temp;
 		low = low + 1;
 		high = high - 1;
 	}
@@ -165,6 +164,7 @@ void Sort::displayNameFile()
 	if (nameChoice == 1)
 	{
 		cin.ignore();
+		quickSort(playerBatting, 0, size - 1);
 		cout << "Please enter one of the players Full Name: ";
 		getline(cin, playerName);
 
